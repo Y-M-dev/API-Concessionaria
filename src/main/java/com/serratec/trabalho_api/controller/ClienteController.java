@@ -1,17 +1,26 @@
 package com.serratec.trabalho_api.controller;
 
+import com.serratec.trabalho_api.model.ClienteInserir;
 import com.serratec.trabalho_api.service.ClienteService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
 
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
 
-    @GetMapping
-    private
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> criarCliente(@Valid @RequestBody ClienteInserir cliente){
+        this.clienteService.inserir(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 }

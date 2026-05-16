@@ -1,12 +1,15 @@
 package com.serratec.trabalho_api.model;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
-
-public class VeiculoCriar {
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class VeiculoAtualizar {
     @NotNull
     private UUID idCliente;
 
@@ -17,7 +20,7 @@ public class VeiculoCriar {
     private String modelo;
 
     @NotNull
-    private Integer  ano;
+    private Integer ano;
 
     @NotNull
     private float valor;

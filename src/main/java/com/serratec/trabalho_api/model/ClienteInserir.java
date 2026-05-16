@@ -1,9 +1,14 @@
 package com.serratec.trabalho_api.model;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class ClienteCriar {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ClienteInserir {
     @NotNull
     private String nome;
 

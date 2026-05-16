@@ -1,61 +1,38 @@
-package com.serratec.trabalho_api.entity;
+package com.serratec.trabalho_api.model;
 
-import com.serratec.trabalho_api.model.VeiculoInserir;
+import com.serratec.trabalho_api.entity.Cliente;
+import com.serratec.trabalho_api.entity.Veiculo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Veiculo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class VeiculoBuscar {
     private UUID id;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente clienteId;
-
-    @Column(nullable = false)
+    private UUID idCliente;
     private String marca;
-
-    @Column(nullable = false)
     private String modelo;
-
-    @Column(nullable = false)
     private Integer ano;
-
-    @Column(nullable = false)
     private float valor;
-
-    @Column(nullable = false)
     private String placa;
-
-    @Column(nullable = false)
     private float maximoDesconto;
-
-    @Column
     private boolean vendido;
-
-    @Column
     private double valorVenda;
 
-    public Veiculo(VeiculoInserir veiculo,Cliente cliente) {
-        this.clienteId = cliente;
+    public VeiculoBuscar(Veiculo veiculo, Cliente cliente) {
+        this.id = veiculo.getId();
+        this.idCliente = cliente.getId();
         this.marca = veiculo.getMarca();
         this.modelo = veiculo.getModelo();
         this.ano = veiculo.getAno();
         this.valor = veiculo.getValor();
         this.placa = veiculo.getPlaca();
         this.maximoDesconto = veiculo.getMaximoDesconto();
-        this.vendido = false;
-        this.valorVenda = 0.0;
+        this.vendido = veiculo.isVendido();
+        this.valorVenda = veiculo.getValorVenda();
     }
-
 }
