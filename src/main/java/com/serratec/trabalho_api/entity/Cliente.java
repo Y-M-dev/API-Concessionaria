@@ -17,10 +17,10 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 11)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 11)
     private String telefone;
 
     @Column(nullable = false, unique = true)
