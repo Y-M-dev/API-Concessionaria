@@ -3,7 +3,6 @@ package com.serratec.trabalho_api.service;
 import com.serratec.trabalho_api.entity.Cliente;
 import com.serratec.trabalho_api.entity.Veiculo;
 import com.serratec.trabalho_api.exception.NaoEncontradoException;
-import com.serratec.trabalho_api.model.ClienteBuscar;
 import com.serratec.trabalho_api.model.VeiculoBuscar;
 import com.serratec.trabalho_api.model.VeiculoInserir;
 import com.serratec.trabalho_api.repository.ClienteRepository;
@@ -13,6 +12,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class VeiculoService {
@@ -31,6 +31,11 @@ public class VeiculoService {
         this.veiculoRepository.save(inserirVeiculo);
     }
 
+    public Veiculo buscarPorId(UUID id){
+        return veiculoRepository.findById(id).orElseThrow(() -> new NaoEncontradoException("Não foi encontrado um cliente com esse id"));
+
+    }
+
     public List<VeiculoBuscar> buscar(String placa, String marca, String modelo) {
         List<Veiculo> veiculos = new ArrayList<>();
 
@@ -43,14 +48,21 @@ public class VeiculoService {
         } else if (StringUtils.hasText(modelo)) {
             veiculos = veiculoRepository.findByModeloContainingIgnoreCase(modelo);
 
-        } else if (!StringUtils.hasText(placa) && !StringUtils.hasText(marca) && !StringUtils.hasText(modelo)) {
+        } else{
             veiculos = veiculoRepository.findAll();
 
-        } else if (veiculos.isEmpty()){
+        }
+        if (veiculos.isEmpty()){
             throw new NaoEncontradoException("Não foi encontrado nenhum dado com os parâmetros");
         }
 
             return veiculos.stream().map(veiculo -> new VeiculoBuscar(veiculo)).toList();
+    }
+
+    public void deletar(UUID id){
+        Veiculo veiculo = buscarPorId(id);
+        veiculoRepository.delete(veiculo);
+
     }
 }
 

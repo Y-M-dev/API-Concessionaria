@@ -1,6 +1,5 @@
 package com.serratec.trabalho_api.controller;
 
-import com.serratec.trabalho_api.entity.Veiculo;
 import com.serratec.trabalho_api.model.VeiculoBuscar;
 import com.serratec.trabalho_api.model.VeiculoInserir;
 import com.serratec.trabalho_api.service.VeiculoService;
@@ -10,12 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/veiculo")
 public class VeiculoController {
 
-    private VeiculoService veiculoService;
+    private final VeiculoService veiculoService;
 
     public VeiculoController(VeiculoService veiculoService) {
         this.veiculoService = veiculoService;
@@ -29,5 +29,10 @@ public class VeiculoController {
     public ResponseEntity<List<VeiculoBuscar>> buscar(@RequestParam(required = false) String placa,@RequestParam(required = false) String marca, @RequestParam(required = false) String modelo){
        List<VeiculoBuscar> veiculos = this.veiculoService.buscar(placa,marca,modelo);
        return ResponseEntity.status(HttpStatus.OK).body(veiculos);
+   }
+   @DeleteMapping
+    public ResponseEntity<Void> deletar(@RequestParam UUID id){
+        this.veiculoService.deletar(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
    }
 }
