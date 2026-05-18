@@ -10,10 +10,10 @@ import java.util.UUID;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, UUID> {
 
-    List<Veiculo> findByPlaca(String placa);
+    List<Veiculo> findByPlacaContainingIgnoreCase(String placa);
 
-    List<Veiculo> findByMarca(String marca);
+    List<Veiculo> findByMarcaContainingIgnoreCase(String marca);
 
-    List<Veiculo> findByModelo(String modelo);
+    List<Veiculo> findByModeloContainingIgnoreCase(String modelo);
 
 }

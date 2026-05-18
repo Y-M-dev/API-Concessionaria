@@ -1,4 +1,4 @@
-package com.serratec.trabalho_api.model;
+package com.serratec.trabalho_api.exception;
 
 public class NaoEncontradoException extends RuntimeException {
     public NaoEncontradoException(String message) {

@@ -23,9 +23,9 @@ public class VeiculoBuscar {
     private boolean vendido;
     private double valorVenda;
 
-    public VeiculoBuscar(Veiculo veiculo, Cliente cliente) {
+    public VeiculoBuscar(Veiculo veiculo) {
         this.id = veiculo.getId();
-        this.idCliente = cliente.getId();
+        this.idCliente = veiculo.getClienteId().getId();
         this.marca = veiculo.getMarca();
         this.modelo = veiculo.getModelo();
         this.ano = veiculo.getAno();

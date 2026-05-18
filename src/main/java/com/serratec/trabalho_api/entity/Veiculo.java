@@ -55,7 +55,7 @@ public class Veiculo {
         this.placa = veiculo.getPlaca();
         this.maximoDesconto = veiculo.getMaximoDesconto();
         this.vendido = false;
-        this.valorVenda = 0.0;
+//      this.valorVenda = 0.0;
     }
 
 }

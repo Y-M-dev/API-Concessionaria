@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/cliente")
@@ -29,6 +30,11 @@ public class ClienteController {
     public ResponseEntity<List<ClienteBuscar>> buscar(@RequestParam(required = false) String nome,@RequestParam(required = false)String cpf){
         List<ClienteBuscar> clientes = this.clienteService.buscar(nome,cpf);
         return ResponseEntity.status(HttpStatus.OK).body(clientes);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable UUID id){
+        this.clienteService.deletar(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
