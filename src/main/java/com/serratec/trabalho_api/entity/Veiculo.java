@@ -1,5 +1,6 @@
 package com.serratec.trabalho_api.entity;
 
+import com.serratec.trabalho_api.model.VeiculoAtualizar;
 import com.serratec.trabalho_api.model.VeiculoInserir;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -58,4 +59,13 @@ public class Veiculo {
 //      this.valorVenda = 0.0;
     }
 
+    public Veiculo(VeiculoAtualizar veiculo) {
+        this.marca = veiculo.getMarca();
+        this.modelo = veiculo.getModelo();
+        this.ano = veiculo.getAno();
+        this.valor = veiculo.getValor();
+        this.maximoDesconto = veiculo.getMaximoDesconto();
+        this.vendido = veiculo.isVendido();
+        this.valorVenda = veiculo.getValorVenda();
+    }
 }

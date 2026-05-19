@@ -67,7 +67,12 @@ public class VeiculoService {
     }
     public void atualizar(UUID id, VeiculoAtualizar veiculoAtt){
         Veiculo atualizarVeiculo = veiculoRepository.findById(id).orElseThrow(() -> new NaoEncontradoException("O veículo não foi encontrado"));
-        atualizarVeiculo
+        Veiculo veiculo = new Veiculo(veiculoAtt);
+        veiculo.setId(atualizarVeiculo.getId());
+        veiculo.setClienteId(atualizarVeiculo.getClienteId());
+        veiculo.setPlaca(atualizarVeiculo.getPlaca());
+        veiculoRepository.save(veiculo);
+
     }
 }
 
