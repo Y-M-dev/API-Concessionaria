@@ -35,7 +35,7 @@ public class Veiculo {
     @Column(nullable = false)
     private float valor;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String placa;
 
     @Column(nullable = false)

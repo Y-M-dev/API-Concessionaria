@@ -21,27 +21,22 @@ public class VeiculoAtualizar {
 
     @Min(1900)
     @NotNull(message = "O ano não pode ser nulo")
-    @NotBlank(message = "O ano não pode estar vazio")
     private Integer ano;
 
     @Min(value = 1, message = "O valor precisa ser maior que 0")
     @NotNull(message = "O valor não pode ser nulo")
-    @NotBlank(message = "O valor não pode estar vazio")
     private float valor;
 
 
     @Min(value = 0, message = "O desconto não pode ser negativo")
     @NotNull(message = "O desconto não pode ser nulo")
-    @NotBlank(message = "O desconto não pode estar vazio")
     private float maximoDesconto;
 
     @NotNull(message = "Status de vendido não pode ser nulo")
-    @NotBlank(message = "Status de vendido não pode estar vazio")
     private boolean vendido;
 
     @Min(value = 1, message = "O valor da venda precisa ser maior que 0")
     @NotNull(message = "O valor da venda não pode ser nulo")
-    @NotBlank(message = "O valor da venda não pode estar vazio")
     private double valorVenda;
 
 }
