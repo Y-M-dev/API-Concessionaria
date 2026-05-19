@@ -46,7 +46,7 @@ public class Veiculo {
     @Column
     private double valorVenda;
 
-    public Veiculo(VeiculoInserir veiculo,Cliente cliente) {
+    public Veiculo(VeiculoInserir veiculo, Cliente cliente) {
         this.clienteId = cliente;
         this.marca = veiculo.getMarca();
         this.modelo = veiculo.getModelo();

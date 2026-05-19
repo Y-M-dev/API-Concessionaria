@@ -3,6 +3,7 @@ package com.serratec.trabalho_api.service;
 import com.serratec.trabalho_api.entity.Cliente;
 import com.serratec.trabalho_api.entity.Veiculo;
 import com.serratec.trabalho_api.exception.NaoEncontradoException;
+import com.serratec.trabalho_api.model.VeiculoAtualizar;
 import com.serratec.trabalho_api.model.VeiculoBuscar;
 import com.serratec.trabalho_api.model.VeiculoInserir;
 import com.serratec.trabalho_api.repository.ClienteRepository;
@@ -63,6 +64,10 @@ public class VeiculoService {
         Veiculo veiculo = buscarPorId(id);
         veiculoRepository.delete(veiculo);
 
+    }
+    public void atualizar(UUID id, VeiculoAtualizar veiculoAtt){
+        Veiculo atualizarVeiculo = veiculoRepository.findById(id).orElseThrow(() -> new NaoEncontradoException("O veículo não foi encontrado"));
+        atualizarVeiculo
     }
 }
 

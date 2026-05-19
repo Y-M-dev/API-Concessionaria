@@ -26,7 +26,7 @@ public class ClienteController {
         this.clienteService.inserir(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ClienteBuscar>> buscar(@RequestParam(required = false) String nome,@RequestParam(required = false)String cpf){
         List<ClienteBuscar> clientes = this.clienteService.buscar(nome,cpf);
         return ResponseEntity.status(HttpStatus.OK).body(clientes);

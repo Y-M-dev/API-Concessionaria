@@ -1,5 +1,6 @@
 package com.serratec.trabalho_api.controller;
 
+import com.serratec.trabalho_api.model.VeiculoAtualizar;
 import com.serratec.trabalho_api.model.VeiculoBuscar;
 import com.serratec.trabalho_api.model.VeiculoInserir;
 import com.serratec.trabalho_api.service.VeiculoService;
@@ -25,14 +26,19 @@ public class VeiculoController {
         this.veiculoService.inserir(veiculo);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<VeiculoBuscar>> buscar(@RequestParam(required = false) String placa,@RequestParam(required = false) String marca, @RequestParam(required = false) String modelo){
        List<VeiculoBuscar> veiculos = this.veiculoService.buscar(placa,marca,modelo);
        return ResponseEntity.status(HttpStatus.OK).body(veiculos);
    }
-   @DeleteMapping
-    public ResponseEntity<Void> deletar(@RequestParam UUID id){
+   @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable UUID id){
         this.veiculoService.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+   }
+   @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable UUID id, @Valid @RequestBody VeiculoAtualizar veiculo){
+        this.veiculoService.atualizar(id,veiculo);
+        return ResponseEntity.status(HttpStatus.OK).build();
    }
 }
