@@ -82,7 +82,7 @@ O endereço da API: http://localhost:8080/api/v1
 }
 ```
 
-> Se `vendido` for `true`, `valorVenda` é obrigatório e deve ser maior que 0.  
-> Se `vendido` for `false`, `valorVenda` deve ser 0.
+ Se `vendido` for `true`, `valorVenda` é obrigatório e tem que ser maior que 0.  
+ Se `vendido` for `false`, `valorVenda` tem que ser 0.
 
 ---
