@@ -10,8 +10,11 @@ API REST para gerenciamento de clientes e veículos de uma concessionária, dese
 No application.properties configure:
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/concessionaria
+
 spring.datasource.username=seu_usuario
+
 spring.datasource.password=sua_senha
+
 spring.jpa.hibernate.ddl-auto=update
 
 
