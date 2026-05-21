@@ -21,13 +21,18 @@ public class GlobalExceptionHandler {
                 .toList();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErroResposta(LocalDateTime.now(), "BAD_REQUEST", erros));
     }
+
     @ExceptionHandler(NaoEncontradoException.class)
     public ResponseEntity<ErroResposta> handleNaoEncontrado(NaoEncontradoException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErroResposta(LocalDateTime.now(),"NOT_FOUND",List.of(ex.getMessage())));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErroResposta(LocalDateTime.now(), "NOT_FOUND", List.of(ex.getMessage())));
     }
 
     @ExceptionHandler(EntidadeDuplicadaException.class)
     public ResponseEntity<ErroResposta> handleDuplicado(EntidadeDuplicadaException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErroResposta(LocalDateTime.now(),"CONFLICT",List.of(ex.getMessage())));
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErroResposta(LocalDateTime.now(), "CONFLICT", List.of(ex.getMessage())));
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErroResposta> handleErroInterno(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErroResposta(LocalDateTime.now(),"INTERNAL_SERVER_ERROR",List.of("Erro interno no servidor")));
     }
 }

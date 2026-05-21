@@ -1,5 +1,6 @@
 package com.serratec.trabalho_api.model;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,4 +40,18 @@ public class VeiculoAtualizar {
     @NotNull(message = "O valor da venda não pode ser nulo")
     private double valorVenda;
 
+    @AssertTrue(message = "Valor da venda precisa ser maior que 0 se o veículo foi vendido")
+    public boolean isVendido() {
+        if (vendido && valorVenda <= 0) {
+            return false;
+        }
+        return true;
+    }
+    @AssertTrue(message = "Não é possível colocar o valor da venda se o veículo não foi marcado como vendido")
+    public boolean isValorVendido() {
+        if (!vendido && valorVenda >= 1) {
+            return false;
+        }
+        return true;
+    }
 }

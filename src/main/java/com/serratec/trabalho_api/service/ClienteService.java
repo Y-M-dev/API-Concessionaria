@@ -1,6 +1,7 @@
 package com.serratec.trabalho_api.service;
 
 import com.serratec.trabalho_api.entity.Cliente;
+import com.serratec.trabalho_api.exception.EntidadeDuplicadaException;
 import com.serratec.trabalho_api.model.ClienteBuscar;
 import com.serratec.trabalho_api.model.ClienteInserir;
 import com.serratec.trabalho_api.exception.NaoEncontradoException;
@@ -22,6 +23,9 @@ public class ClienteService {
     }
 
     public void inserir(ClienteInserir cliente) {
+        if (clienteRepository.findByCpf(cliente.getCpf()).isPresent()) {
+            throw new EntidadeDuplicadaException("O cliente já foi cadastrado");
+        }
         Cliente inserirCliente = new Cliente(cliente);
         this.clienteRepository.save(inserirCliente);
 
@@ -37,7 +41,7 @@ public class ClienteService {
             clientes = clienteRepository.findByNomeContainingIgnoreCase(nome);
 
         } else if (StringUtils.hasText(cpf)) {
-            clientes = clienteRepository.findByCpf(cpf);
+            clientes.add(clienteRepository.findByCpf(cpf).orElseThrow(() -> new NaoEncontradoException("Não foi encontrado um cliente com o cpf " + cpf)));
 
         } else {
             clientes = clienteRepository.findAll();
